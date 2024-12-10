@@ -243,7 +243,10 @@ class GestureRecognizerApp:
             base_options=mp.tasks.BaseOptions(model_asset_path=model_path),
             running_mode=mp.tasks.vision.RunningMode.LIVE_STREAM,
             result_callback=self.print_result,
-            min_hand_detection_confidence=0.75
+            min_hand_detection_confidence=0.35,
+            min_tracking_confidence=0.35,
+            min_hand_presence_confidence=0.35
+            
         )
         self.recognizer = mp.tasks.vision.GestureRecognizer.create_from_options(self.options)
         self.cursor.on_click(self.on_cursor_click)
@@ -365,6 +368,9 @@ class GestureRecognizerApp:
 
     def run(self):
         cap = cv2.VideoCapture(0)
+        # Set camera exposure
+        cap.set(cv2.CAP_PROP_AUTO_EXPOSURE, 0.25)  # Turn off auto exposure
+        cap.set(cv2.CAP_PROP_EXPOSURE, -1)  # Set exposure value (adjust as needed)
         while cap.isOpened():
             success, image = cap.read()
             if not success:

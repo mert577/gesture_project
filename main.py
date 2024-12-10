@@ -462,7 +462,7 @@ class GestureRecognizerApp:
         self.gooses.clear()
 
 if __name__ == "__main__":
-    # Hardcoded path // FIX LATER!!!
-    model_path = r"C:\Users\canin\Downloads\gesture_project-main\gesture_recognizer.task"
+   
+    model_path = r"gesture_recognizer.task"
     app = GestureRecognizerApp(model_path)
     app.run()

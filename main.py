@@ -5,6 +5,7 @@ import time
 import random
 import threading
 from playsound import playsound
+from pathlib import Path
 from mediapipe.framework.formats import landmark_pb2
 
 
@@ -461,8 +462,10 @@ class GestureRecognizerApp:
         self.in_minigame = False
         self.gooses.clear()
 
+
+
 if __name__ == "__main__":
-    # Hardcoded path // FIX LATER!!!
-    model_path = r"C:\Users\canin\Downloads\gesture_project-main\gesture_recognizer.task"
-    app = GestureRecognizerApp(model_path)
+    model_path = Path(__file__).parent / "gesture_recognizer.task"
+    app = GestureRecognizerApp(str(model_path))
     app.run()
+
